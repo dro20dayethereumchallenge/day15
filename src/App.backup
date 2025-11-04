@@ -30,19 +30,37 @@ function App() {
     setSigner(signer);
     const ColorContract = new ethers.Contract(ColorAddress.address, ColorAbi.abi, signer);
     setContract(ColorContract);
-    const totalSupply = await ColorContract.totalSupply()
-    //this.setState({ totalSupply })
-    console.log("totalSupply- " ,totalSupply);
-    setTotalSupply(totalSupply);
-    let colorList = [];
+
+ //   const tx  = await ColorContract.mint("#FFFFFA");
+         //const tx = await  contract.mint(color, {from: signer[0] ,value: ethers.parseEther("100") });
+ // await tx.wait();
+
+  // const tx2  = await ColorContract.mint("#FFFF1A");
+         //const tx = await  contract.mint(color, {from: signer[0] ,value: ethers.parseEther("100") });
+ // await tx2.wait();
+
+
+
+
+   const totalSupply = await ColorContract.totalSupply()
+   //this.setState({ totalSupply })
+   console.log("totalSupply- " ,totalSupply);
+
+	    setTotalSupply(totalSupply);
+
+let colorList = [];
 	    // Load Colors
-    for (var i = 1; i <= totalSupply; i++) {
+   for (var i = 1; i <= totalSupply; i++) {
       const color = await ColorContract.colors(i - 1)
-      console.log("color  = ",color)   
-      colorList.push(color);
-    }
-    setColors(colorList);
-    console.log("colors", colors)
+	console.log("color  = ",color)   
+        colorList.push(color);
+   }
+setColors(colorList);
+
+console.log("colors", colors)
+
+
+
 
     };
     initialize();
@@ -52,7 +70,40 @@ function App() {
 
 console.log('just before mint : ', color)
     const tx  = await contract.mint(color);
+ //   async function callContractMethod() {
+ //       const accounts = await web3.eth.getAccounts();
+   //     const fromAccount = accounts[0]; // Or a specific account
+//
+  //      try {
+   //         const estimatedGas = await myContract.methods.yourContractMethod(arg1, arg2)
+     //           .estimateGas({ from: fromAccount });
+
+            // You might want to add a buffer to the estimated gas for safety
+       //     const gasLimit = Math.floor(estimatedGas * 1.2); // Add 20% buffer
+
+            // Now, send the transaction with the estimated gas limit
+         //   const receipt = await myContract.methods.yourContractMethod(arg1, arg2)
+           //     .send({ from: fromAccount, gas: gasLimit });
+
+       //     console.log('Transaction receipt:', receipt);
+      //  } catch (error) {
+      //      console.error('Error estimating or sending transaction:', error);
+      //  }
+  //  }
+
+
+
+
+
+
+
+
+	 //	const tx = await  contract.mint(color, {from: signer[0] ,value: ethers.parseEther("200000") });
   await tx.wait();
+
+//	 this.setState({
+  //      colors: [...colors, color]
+   //   })
   }
 
     return (
