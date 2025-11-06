@@ -7,7 +7,7 @@ paths: {
   },
         networks: {
                 localhost: {
-                        url: "http://ec2-44-250-184-25.us-west-2.compute.amazonaws.com:8545"
+                        url: "http://ec2-35-87-231-249.us-west-2.compute.amazonaws.com:8545"
             ,           chainID: 1337
 
                 }

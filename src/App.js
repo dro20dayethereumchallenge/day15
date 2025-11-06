@@ -4,26 +4,17 @@ import { providers } from 'ethers/providers';
 import ColorAbi from './contractsData/Color.json'
 import ColorAddress from './contractsData/Color-address.json'
 
-
 function App() {
   const [colorCode, setColorCode] = useState("");
   const [provider, setProvider] = useState(null);
   const [colors, setColors] = useState([]);
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
-  const [result, setResult] = useState("");
-  const [wager, setWager] = useState("");
-  const [display, setDisplay] = useState("");
-  const [guess, setGuess] = useState(true); // true for higher, false for lower
-  const [playerSessions, setPlayerSessions] = useState([]);
   const [totalSupply, setTotalSupply] = useState([]);
 
-
-
   useEffect(() => {
-     // Connect to Ethereum
     const initialize = async () => {
-    const web3Provider = new ethers.JsonRpcProvider("http://ec2-44-250-184-25.us-west-2.compute.amazonaws.com:8545");
+    const web3Provider = new ethers.JsonRpcProvider("http://ec2-35-87-231-249.us-west-2.compute.amazonaws.com:8545");
     //const web3Provider = new BrowserProvider(window.ethereum);
     setProvider(web3Provider);
     const signer = await web3Provider.getSigner(0);
@@ -32,8 +23,8 @@ function App() {
     setContract(ColorContract);
     const totalSupply = await ColorContract.totalSupply()
     //this.setState({ totalSupply })
-    console.log("totalSupply- " ,totalSupply);
-    setTotalSupply(totalSupply);
+    console.log("totalSupply= " ,totalSupply);
+    //setTotalSupply(totalSupply);
     let colorList = [];
 	    // Load Colors
     for (var i = 1; i <= totalSupply; i++) {
@@ -76,37 +67,21 @@ shadow">
                 <h1>Issue Token</h1>
                 <form onSubmit={(event) => {
                   event.preventDefault()
-            
-
-
-			//const color = this.color.value
-		//	const color  = '#FFFF1F'
-
-
-                         mint(
-
-         colorCode 
-
-			)
-           
+                         mint(colorCode)
                 }}>
         <label>Color Code: </label>
         <input type="text" value={colorCode} onChange={e => setColorCode(e.target.value)} />
-
-
-
-
 	    <input
                     type='submit'
                     className='btn btn-block btn-primary'
                     value='MINT'
-                  />
-                </form>
-              </div>
-            </main>
-          </div>
-          <hr/>
-   <div className="row text-center">
+            />
+        </form>
+        </div>
+        </main>
+        </div>
+        <hr/>
+        <div className="row text-center">
             { colors.map((color, key) => {
               return(
                 <div key={key} className="col-md-3 mb-3">
@@ -120,29 +95,14 @@ shadow">
               borderRadius: '8px',
             }}
           /> 
-
-
-
-
-		      <div>{color}</div>
-                </div>
-              )
-            }
-
-
-
-
-	    )}
-          </div>
-
-
-
-
-
-
-
-	    </div>
-      </div>
+      <div>{color}</div>
+     </div>
+     )
+    }
+    )}
+  </div>
+  </div>
+  </div>
     );
   }
 
