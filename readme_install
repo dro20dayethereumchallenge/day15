@@ -16,7 +16,7 @@ npx create-react-app color
 cd hello
 
 
-npm start
+npm start      # when you want to test your DAPP....
 # set your inbound rule appropriately ( i set "all traffic" and "IPV4" through the EC2 console ) 
 # set a tap to     <dns-from-aws-console>:3000
 # "hello world" should now show up!
